@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import dynamic from 'next/dynamic';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -10,6 +10,8 @@ import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
+import { calculateDistance, filterRoomsByDistance } from '@/utils/distance';
+import { MapUpdater } from './MapUpdater';
 
 // Fix Leaflet default marker icons
 if (typeof window !== 'undefined') {
@@ -81,9 +83,9 @@ interface LeafletRoomsMapViewProps {
   radiusKm?: number;
 }
 
-export function LeafletRoomsMapView({ 
-  rooms, 
-  userLocation, 
+export function LeafletRoomsMapView({
+  rooms,
+  userLocation,
   height = '600px',
   showRadius = false,
   radiusKm = 5
@@ -94,12 +96,20 @@ export function LeafletRoomsMapView({
     userLocation ? [userLocation.lat, userLocation.lng] : defaultCenter
   );
 
+  // Filter rooms by radius if user location and showRadius are set
+  const displayedRooms = useMemo(() => {
+    if (showRadius && userLocation) {
+      return filterRoomsByDistance(rooms, userLocation, radiusKm);
+    }
+    return rooms;
+  }, [rooms, userLocation, showRadius, radiusKm]);
+
   useEffect(() => {
     setMounted(true);
-    
+
     // Set center based on rooms or user location
-    if (rooms.length > 0 && !userLocation) {
-      const firstRoom = rooms[0];
+    if (displayedRooms.length > 0 && !userLocation) {
+      const firstRoom = displayedRooms[0];
       if (firstRoom.location?.coordinates) {
         setCenter([
           firstRoom.location.coordinates.lat,
@@ -109,7 +119,7 @@ export function LeafletRoomsMapView({
     } else if (userLocation) {
       setCenter([userLocation.lat, userLocation.lng]);
     }
-  }, [rooms, userLocation]);
+  }, [displayedRooms, userLocation]);
 
   if (!mounted) {
     return (
@@ -142,6 +152,9 @@ export function LeafletRoomsMapView({
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
 
+        {/* Auto-fit bounds to show all rooms and user location */}
+        <MapUpdater rooms={displayedRooms} userLocation={userLocation} />
+
         {/* User location marker with radius */}
         {userLocation && (
           <>
@@ -153,7 +166,7 @@ export function LeafletRoomsMapView({
                 </div>
               </Popup>
             </Marker>
-            
+
             {showRadius && (
               <Circle
                 center={[userLocation.lat, userLocation.lng]}
@@ -170,7 +183,7 @@ export function LeafletRoomsMapView({
         )}
 
         {/* Room markers */}
-        {rooms.map((room) => {
+        {displayedRooms.map((room) => {
           if (!room.location?.coordinates) return null;
 
           return (
@@ -261,11 +274,11 @@ export function LeafletRoomsMapView({
             <div className="flex items-center gap-2">
               <Home className="w-4 h-4 text-primary" />
               <span className="text-sm font-semibold">
-                {rooms.length} {rooms.length === 1 ? 'Room' : 'Rooms'} Found
+                {displayedRooms.length} {displayedRooms.length === 1 ? 'Room' : 'Rooms'} Found
               </span>
             </div>
-            {showRadius && (
-              <p className="text-xs text-gray-600 mt-1">
+            {showRadius && userLocation && (
+              <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">
                 Within {radiusKm} km radius
               </p>
             )}

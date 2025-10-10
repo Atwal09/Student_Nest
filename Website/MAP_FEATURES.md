@@ -9,13 +9,13 @@
    - Search for addresses
    - Get current location (GPS)
    - Reverse geocoding (coordinates → address)
-   
+
 2. **Radius-Based Room Search for Students** ✅
    - Filter rooms within 5km radius
    - Visual radius circle on map
    - Distance calculation using Haversine formula
    - Sort rooms by distance
-   
+
 3. **Map View in Room Browser** ✅
    - Toggle between List and Map views
    - See all rooms on interactive map
@@ -36,7 +36,7 @@ import { LocationSelector } from '@/components/map';
 <LocationSelector
   onLocationSelect={(location) => {
     // location.address
-    // location.city  
+    // location.city
     // location.coordinates { lat, lng }
   }}
   initialLocation={{ lat: 28.6139, lng: 77.2090 }}
@@ -97,11 +97,11 @@ import { RoomLocationMap } from '@/components/map';
 **Path:** `src/utils/distance.ts`
 
 ```typescript
-import { 
+import {
   calculateDistance,
   filterRoomsByDistance,
   sortRoomsByDistance,
-  formatDistance 
+  formatDistance
 } from '@/utils/distance';
 
 // Calculate distance between two points
@@ -203,7 +203,7 @@ In RoomBrowser, users can switch views:
 
 ### Step 2: Select Location
 - Click map OR
-- Search address OR  
+- Search address OR
 - Use GPS
 
 ### Step 3: Set Radius
@@ -232,14 +232,14 @@ function calculateDistance(lat1, lng1, lat2, lng2) {
   const R = 6371; // Earth radius in km
   const dLat = toRadians(lat2 - lat1);
   const dLng = toRadians(lng2 - lng1);
-  
+
   const a =
     Math.sin(dLat / 2) * Math.sin(dLat / 2) +
     Math.cos(toRadians(lat1)) *
     Math.cos(toRadians(lat2)) *
     Math.sin(dLng / 2) *
     Math.sin(dLng / 2);
-    
+
   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
   return R * c; // Distance in km
 }
