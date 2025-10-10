@@ -15,8 +15,8 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
-import { LocationSelector } from '@/components/map/LocationSelector';
-import { RoomsMapView } from '@/components/map/RoomsMapView';
+import { LocationSelector } from '@/components/map';
+import { RoomsMapView } from '@/components/map';
 import {
   MapPin,
   Plus,

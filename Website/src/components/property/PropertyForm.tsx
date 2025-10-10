@@ -10,7 +10,7 @@ import { Badge } from '@/components/ui/badge';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Progress } from '@/components/ui/progress';
 import { ImageUploader } from './ImageUploader';
-import { LocationSelector } from '@/components/map/LocationSelector';
+import { LocationSelector } from '@/components/map';
 import apiClient from '@/lib/api';
 import { toast } from 'sonner';
 import {

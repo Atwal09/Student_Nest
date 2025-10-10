@@ -103,7 +103,7 @@ if (loadError) {
 **Action Required:** Get new API key
 
 **Why?**
-- Current key: `AIzaSyCe5p4MqJp5S8_0wqH8JVz9xQX6WZ8xJZo`
+- Current key: `AIzaSyCaiyzc1WvgHwH6QKWmjamgUeyEuL2WU54`
 - Google returns: "The provided API key is invalid"
 - Likely: Revoked or restricted
 
@@ -183,7 +183,7 @@ node scripts/test-all-fixes.js
 nano .env.local
 
 # Replace this line:
-NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=AIzaSyCe5p4MqJp5S8_0wqH8JVz9xQX6WZ8xJZo
+NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=AIzaSyCaiyzc1WvgHwH6QKWmjamgUeyEuL2WU54
 
 # With your new key:
 NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=YOUR_NEW_KEY_HERE

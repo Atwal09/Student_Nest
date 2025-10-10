@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Loader2, Heart, MapPin, Star, Users, Eye, Filter, Navigation, Map } from 'lucide-react';
+import { Loader2, Heart, MapPin, Star, Users, Eye, Filter, Navigation, Map, List } from 'lucide-react';
 import apiClient from '@/lib/api';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -18,8 +18,9 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
-import { LocationSelector } from '@/components/map/LocationSelector';
+import { LocationSelector, RoomsMapView } from '@/components/map';
 import { toast } from 'sonner';
+import { filterRoomsByDistance } from '@/utils/distance';
 
 interface Room {
   id: string;
@@ -29,6 +30,10 @@ interface Room {
     address: string;
     city: string;
     state: string;
+    coordinates?: {
+      lat: number;
+      lng: number;
+    };
   };
   images?: string[];
   rating?: number;
@@ -94,6 +99,9 @@ function RoomBrowser() {
   const [ratingFilter, setRatingFilter] = useState(0);
   const [sortBy, setSortBy] = useState('newest');
   const [areaRange, setAreaRange] = useState<number[]>([50, 500]);
+  
+  // View mode state
+  const [viewMode, setViewMode] = useState<'list' | 'map'>('list');
 
   // Load rooms from API
   const loadRooms = async () => {
@@ -504,6 +512,28 @@ function RoomBrowser() {
               </p>
             </div>
             <div className="flex gap-2">
+              {/* View Mode Toggle */}
+              <div className="flex gap-1 border rounded-md p-1">
+                <Button
+                  variant={viewMode === 'list' ? 'default' : 'ghost'}
+                  size="sm"
+                  onClick={() => setViewMode('list')}
+                  className="gap-2"
+                >
+                  <List className="h-4 w-4" />
+                  List
+                </Button>
+                <Button
+                  variant={viewMode === 'map' ? 'default' : 'ghost'}
+                  size="sm"
+                  onClick={() => setViewMode('map')}
+                  className="gap-2"
+                >
+                  <Map className="h-4 w-4" />
+                  Map
+                </Button>
+              </div>
+
               {/* Location Filter Button */}
               <Button
                 variant={selectedLocation ? "default" : "outline"}
@@ -551,6 +581,46 @@ function RoomBrowser() {
             </div>
           ) : (
             <>
+              {/* Map View */}
+              {viewMode === 'map' ? (
+                <div className="space-y-4">
+                  <RoomsMapView
+                    rooms={displayedRooms.map(room => ({
+                      _id: room.id,
+                      title: room.title,
+                      price: room.price,
+                      location: {
+                        coordinates: room.location?.coordinates || { lat: 0, lng: 0 },
+                        address: room.location?.address || '',
+                        city: room.location?.city || '',
+                      },
+                      images: room.images || [],
+                      roomType: room.roomType || '',
+                      accommodationType: room.roomType || '',
+                      rating: room.rating,
+                      availability: room.availability,
+                    }))}
+                    userLocation={selectedLocation?.coordinates}
+                    height="600px"
+                    showRadius={!!selectedLocation}
+                    radiusKm={selectedLocation?.radius || 5}
+                  />
+                  {displayedRooms.length === 0 && (
+                    <div className="text-center py-8">
+                      <MapPin className="h-12 w-12 mx-auto text-gray-400 mb-4" />
+                      <p className="text-gray-600">No rooms found in this area</p>
+                      <Button
+                        variant="outline"
+                        onClick={() => setShowLocationModal(true)}
+                        className="mt-4"
+                      >
+                        Change Location
+                      </Button>
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <>
               {/* Rooms Grid */}
               {displayedRooms.length > 0 ? (
                 <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
@@ -684,6 +754,8 @@ function RoomBrowser() {
                     )}
                   </CardContent>
                 </Card>
+              )}
+              </>
               )}
             </>
           )}

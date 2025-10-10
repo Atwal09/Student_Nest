@@ -29,7 +29,7 @@
 │  Error: "InvalidKeyMapError"                                     │
 ├─────────────────────────────────────────────────────────────────┤
 │  ❌ PROBLEM:                                                     │
-│     Current key: AIzaSyCe5p4MqJp5S8_0wqH8JVz9xQX6WZ8xJZo        │
+│     Current key: AIzaSyCaiyzc1WvgHwH6QKWmjamgUeyEuL2WU54        │
 │     Status: Invalid/Restricted                                   │
 │                                                                  │
 │  ✅ SOLUTION:                                                    │

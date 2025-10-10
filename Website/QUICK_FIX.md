@@ -71,7 +71,7 @@ cd /Users/ronakkumarsingh/Desktop/Optimzing/student-nest-new
 nano .env.local
 
 # Find this line:
-NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=AIzaSyCe5p4MqJp5S8_0wqH8JVz9xQX6WZ8xJZo
+NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=AIzaSyCaiyzc1WvgHwH6QKWmjamgUeyEuL2WU54
 
 # Replace with your new key:
 NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=YOUR_NEW_KEY_HERE
