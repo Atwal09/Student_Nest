@@ -61,20 +61,17 @@ export const useAuthStore = create<AuthState>((set, get) => ({
         throw new Error('Email and password are required');
       }
 
-      // For testing: Check demo credentials
+      // Check if using demo credentials
       if (email === DEMO_CREDENTIALS.student.email && password === DEMO_CREDENTIALS.student.password) {
         console.log('Using demo student credentials');
-        
-        // Create mock user data
         const mockUser: User = {
-          id: '1',
+          id: 's1',
           name: 'Demo Student',
           email: email,
           role: 'student',
           profileImage: undefined
         };
-        
-        const mockToken = 'mock-token-for-testing';
+        const mockToken = 'mock-token-student';
 
         // Store mock data
         await Promise.all([
@@ -89,51 +86,38 @@ export const useAuthStore = create<AuthState>((set, get) => ({
           user: mockUser, 
           isLoading: false 
         });
+        return;
+      } 
+      
+      if (email === DEMO_CREDENTIALS.owner.email && password === DEMO_CREDENTIALS.owner.password) {
+        console.log('Using demo owner credentials');
+        const mockUser: User = {
+          id: 'o1',
+          name: 'Demo Owner',
+          email: email,
+          role: 'owner',
+          profileImage: undefined
+        };
+        const mockToken = 'mock-token-owner';
 
+        // Store mock data
+        await Promise.all([
+          secureStorage.setAuthToken(mockToken),
+          secureStorage.setUserData(mockUser),
+        ]);
+
+        // Update store state
+        set({ 
+          isAuthenticated: true, 
+          token: mockToken, 
+          user: mockUser, 
+          isLoading: false 
+        });
         return;
       }
 
-      // If not using demo credentials, try real API
-      const payload = {
-        identifier: email,
-        password,
-        role: 'student'
-      };
-
-      console.log('Login attempt with:', { identifier: email, role: 'student' });
-
-      const response = await api.request('/auth/login', {
-        method: 'POST',
-        body: JSON.stringify(payload),
-      });
-
-      console.log('Response from /auth/login:', JSON.stringify(response));
-
-      if (!response?.data) {
-        throw new Error('Invalid response format from server');
-      }
-
-      const { accessToken, user } = response.data;
-
-      if (!accessToken || !user) {
-        throw new Error('Missing token or user data in response');
-      }
-
-      // Ensure we have the required user fields
-      const userData: User = {
-        id: user.id || user._id, // Handle both id formats
-        name: user.name,
-        email: user.email,
-        role: user.role || 'student', // Default to student if role is missing
-        profileImage: user.profileImage
-      };
-
-      await Promise.all([
-        secureStorage.setAuthToken(accessToken),
-        secureStorage.setUserData(userData),
-      ]);
-
-      set({ isAuthenticated: true, token: accessToken, user: userData, isLoading: false });
+      // If credentials don't match demo accounts
+      throw new Error('Invalid credentials. Please use the demo credentials provided.');
     } catch (error: any) {
       set({ isLoading: false });
       throw error instanceof Error ? error : new Error(error?.message || 'Login failed. Please try again.');

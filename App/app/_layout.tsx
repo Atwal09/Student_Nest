@@ -13,34 +13,10 @@ import { useNavigationStore, useAuthStore } from '@store';
 
 export const unstable_settings = {
   initialRouteName: '(landing)',
-  routes: {
-    '(landing)': {
-      screens: {
-        index: 'Landing',
-      },
-    },
-    '(auth)': {
-      screens: {
-        'student/login': 'Student Login',
-        'student/signup': 'Student Registration',
-        'owner/login': 'Owner Login',
-        'owner/signup': 'Owner Registration',
-      },
-    },
-    '(drawer)': {
-      screens: {
-        'home': 'Home',
-        'room-sharing': 'Room Sharing',
-        'bookings': 'My Bookings',
-        'visiting': 'Visiting Schedule',
-        'negotiations': 'Negotiations',
-        'saved': 'Saved Rooms',
-        'messages': 'Messages',
-        'profile': 'Profile',
-      },
-    },
-  },
 };
+
+// Prevent flashing loading screen
+const SUPPRESS_NAVIGATION_BAR_WARINING = true;
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
@@ -49,20 +25,36 @@ export default function RootLayout() {
     <GestureHandlerRootView style={styles.container}>
       <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
         <AuthProvider>
-          <Stack screenOptions={{ headerShown: false }}>
-            <Stack.Screen name="(landing)" />
-            <Stack.Screen name="(auth)" />
-            <Stack.Screen name="(drawer)" />
+          <Stack
+            screenOptions={{
+              headerShown: false,
+              contentStyle: { backgroundColor: 'transparent' },
+              animation: 'fade',
+            }}
+          >
+            <Stack.Screen 
+              name="(landing)" 
+              options={{ animation: 'fade' }} 
+            />
+            <Stack.Screen 
+              name="(auth)" 
+              options={{ animation: 'fade' }} 
+            />
+            <Stack.Screen 
+              name="(drawer)" 
+              options={{ animation: 'fade' }} 
+            />
             <Stack.Screen 
               name="modal" 
               options={{ 
                 headerShown: true,
                 presentation: 'modal', 
-                title: 'Modal' 
+                title: 'Modal',
+                animation: 'slide_from_bottom',
               }} 
             />
           </Stack>
-          <StatusBar style="auto" />
+          <StatusBar style={colorScheme === 'dark' ? 'light' : 'dark'} />
         </AuthProvider>
       </ThemeProvider>
     </GestureHandlerRootView>
