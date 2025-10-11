@@ -4,10 +4,10 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { uploadImage, uploadVideo, uploadPropertyImage, uploadPropertyVideo, deleteFile } from '@/lib/cloudinary';
-import { verifyAccessToken } from '@/lib/utils/jwt';
-import User from '@/lib/models/User';
-import connectDB from '@/lib/db/connection';
+import { uploadImage, uploadVideo, uploadPropertyImage, uploadPropertyVideo, deleteFile } from '../../../lib/cloudinary';
+import { verifyAccessToken } from '../../../lib/utils/jwt';
+import User from '../../../lib/models/User';
+import connectDB from '../../../lib/db/connection';
 
 // Maximum file sizes
 const MAX_IMAGE_SIZE = 10 * 1024 * 1024; // 10MB

@@ -1,6 +1,6 @@
 "use client";
 
-import TiltedCard from '@/components/landing/components/TiltedCard';
+import TiltedCard from './components/TiltedCard';
 import { CheckCircle, ArrowRight, Search, MessageSquare, Star } from "lucide-react";
 import Link from "next/link";
 

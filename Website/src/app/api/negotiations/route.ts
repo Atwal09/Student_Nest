@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
-import connectDB from '@/lib/db/connection';
-import Negotiation from '@/lib/models/Negotiation';
-import Room from '@/lib/models/Room';
-import { verifyAccessToken } from '@/lib/utils/jwt';
+import connectDB from '../../../lib/db/connection';
+import Negotiation from '../../../lib/models/Negotiation';
+import Room from '../../../lib/models/Room';
+import { verifyAccessToken } from '../../../lib/utils/jwt';
 
 // GET: Get user's negotiations (student or owner)
 export async function GET(request: NextRequest) {

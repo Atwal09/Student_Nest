@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
-import connectDB from '@/lib/db/connection';
-import RoomSharing from '@/lib/models/RoomSharing';
-import { verifyAccessToken } from '@/lib/utils/jwt';
+import connectDB from '../../../../../lib/db/connection';
+import RoomSharing from '../../../../../lib/models/RoomSharing';
+import { verifyAccessToken } from '../../../../../lib/utils/jwt';
 
 // PATCH: Deactivate room sharing (initiator only)
 export async function PATCH(

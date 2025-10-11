@@ -2,7 +2,7 @@
 
 import { useState, useEffect, ReactNode } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
-import VerificationPrompt from '@/components/verification/VerificationPrompt';
+import VerificationPrompt from './VerificationPrompt';
 
 interface VerificationGuardProps {
   children: ReactNode;

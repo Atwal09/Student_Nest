@@ -1,4 +1,4 @@
-import OTP from '@/lib/models/OTP';
+import OTP from '../models/OTP';
 import { sendOTPEmail } from './email';
 import { sendOTPSMS } from './sms';
 

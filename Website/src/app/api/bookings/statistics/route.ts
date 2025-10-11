@@ -4,11 +4,11 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import connectDB from '@/lib/db/connection';
-import Booking from '@/lib/models/Booking';
-import Room from '@/lib/models/Room';
-import User from '@/lib/models/User';
-import { verifyAccessToken } from '@/lib/utils/jwt';
+import connectDB from '../../../../lib/db/connection';
+import Booking from '../../../../lib/models/Booking';
+import Room from '../../../../lib/models/Room';
+import User from '../../../../lib/models/User';
+import { verifyAccessToken } from '../../../../lib/utils/jwt';
 
 async function verifyUser(request: NextRequest) {
   try {

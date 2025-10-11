@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
-import connectDB from '@/lib/db/connection';
-import RoomSharing from '@/lib/models/RoomSharing';
-import Room from '@/lib/models/Room';
-import { verifyAccessToken } from '@/lib/utils/jwt';
+import connectDB from '../../../../lib/db/connection';
+import RoomSharing from '../../../../lib/models/RoomSharing';
+import Room from '../../../../lib/models/Room';
+import { verifyAccessToken } from '../../../../lib/utils/jwt';
 
 // GET: Manual cleanup check (can be called by admin or cron job)
 export async function GET(request: NextRequest) {

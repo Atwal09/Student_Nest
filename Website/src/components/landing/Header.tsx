@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
-import { StudentNestLogo } from "@/components/ui/logo";
+import { StudentNestLogo } from "../ui/logo";
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);

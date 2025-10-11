@@ -1,12 +1,12 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Badge } from '@/components/ui/badge';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../../../../components/ui/card';
+import { Button } from '../../../../components/ui/button';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '../../../../components/ui/tabs';
+import { Badge } from '../../../../components/ui/badge';
+import { Input } from '../../../../components/ui/input';
+import { Label } from '../../../../components/ui/label';
 import {
   Dialog,
   DialogContent,
@@ -14,9 +14,9 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from '@/components/ui/dialog';
-import { LocationSelector } from '@/components/map';
-import { RoomsMapView } from '@/components/map';
+} from '../../../../components/ui/dialog';
+import { LocationSelector } from '../../../../components/map';
+import { RoomsMapView } from '../../../../components/map';
 import {
   MapPin,
   Plus,
@@ -29,7 +29,7 @@ import {
   Search,
 } from 'lucide-react';
 import { toast } from 'sonner';
-import apiClient from '@/lib/api';
+import apiClient from '../../../../lib/api';
 
 interface PreferredLocation {
   address: string;

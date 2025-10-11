@@ -1,9 +1,9 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
-import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp"
-import { Button } from "@/components/ui/button"
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "../ui/dialog"
+import { InputOTP, InputOTPGroup, InputOTPSlot } from "../ui/input-otp"
+import { Button } from "../ui/button"
 
 interface OtpModalProps {
   open: boolean

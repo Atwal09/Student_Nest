@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
-import connectDB from '@/lib/db/connection';
-import User from '@/lib/models/User';
-import { verifyAccessToken } from '@/lib/utils/jwt';
+import connectDB from '../../../../lib/db/connection';
+import User from '../../../../lib/models/User';
+import { verifyAccessToken } from '../../../../lib/utils/jwt';
 import { z } from 'zod';
 
 // Validation schema for owner profile updates

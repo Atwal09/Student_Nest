@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
-import connectDB from '@/lib/db/connection';
-import User from '@/lib/models/User';
-import { verifyAccessToken } from '@/lib/utils/jwt';
+import connectDB from '../../../../lib/db/connection';
+import User from '../../../../lib/models/User';
+import { verifyAccessToken } from '../../../../lib/utils/jwt';
 
 export async function GET(request: Request) {
   try {

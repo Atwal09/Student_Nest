@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useState } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
+import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
+import { Button } from '../ui/button';
+import { Badge } from '../ui/badge';
 import {
   Calendar,
   Clock,
@@ -19,7 +19,7 @@ import {
   AlertCircle,
   CheckCircle2
 } from 'lucide-react';
-import apiClient from '@/lib/api';
+import apiClient from '../../lib/api';
 import { toast } from 'sonner';
 
 interface MeetingCardProps {

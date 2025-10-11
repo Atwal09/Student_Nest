@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Heart } from "lucide-react";
 import Link from "next/link";
-import { StudentNestLogoIcon } from "@/components/ui/logo";
+import { StudentNestLogoIcon } from "../ui/logo";
 
 export default function SimpleFooter() {
   const currentYear = new Date().getFullYear();

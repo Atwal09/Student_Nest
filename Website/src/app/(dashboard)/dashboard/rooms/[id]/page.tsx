@@ -4,11 +4,11 @@ import { useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { Separator } from '@/components/ui/separator';
-import { AMENITIES_LIST } from '@/utils/constants';
+import { Card, CardContent, CardHeader, CardTitle } from '../../../../../components/ui/card';
+import { Button } from '../../../../../components/ui/button';
+import { Badge } from '../../../../../components/ui/badge';
+import { Separator } from '../../../../../components/ui/separator';
+import { AMENITIES_LIST } from '../../../../../utils/constants';
 import {
   MapPin,
   Star,
@@ -42,7 +42,7 @@ import {
 } from 'lucide-react';
 import { toast } from 'sonner';
 
-import apiClient from '@/lib/api';
+import apiClient from '../../../../../lib/api';
 
 // Types
 interface NearbyUniversity {

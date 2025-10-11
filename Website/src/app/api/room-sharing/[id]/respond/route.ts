@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
-import connectDB from '@/lib/db/connection';
-import RoomSharing from '@/lib/models/RoomSharing';
-import Student from '@/lib/models/Student';
-import { verifyAccessToken } from '@/lib/utils/jwt';
+import connectDB from '../../../../../lib/db/connection';
+import RoomSharing from '../../../../../lib/models/RoomSharing';
+import Student from '../../../../../lib/models/Student';
+import { verifyAccessToken } from '../../../../../lib/utils/jwt';
 
 // Verify user and ensure they are verified
 async function verifyUser(request: NextRequest) {

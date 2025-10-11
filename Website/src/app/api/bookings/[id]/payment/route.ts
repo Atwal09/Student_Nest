@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
-import connectDB from '@/lib/db/connection';
-import Booking from '@/lib/models/Booking';
-import { verifyAccessToken } from '@/lib/utils/jwt';
+import connectDB from '../../../../../lib/db/connection';
+import Booking from '../../../../../lib/models/Booking';
+import { verifyAccessToken } from '../../../../../lib/utils/jwt';
 
 // Helper to verify user
 async function verifyUser(request: NextRequest) {

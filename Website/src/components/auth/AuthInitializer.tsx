@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, ReactNode } from 'react';
-import { useAuth } from '@/hooks/useAuth';
+import { useAuth } from '../../hooks/useAuth';
 
 export default function AuthInitializer({ children }: { children: ReactNode }) {
   const { initializeAuth, loading } = useAuth();

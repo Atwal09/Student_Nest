@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
-import connectDB from '@/lib/db/connection';
-import Student from '@/lib/models/Student';
-import Owner from '@/lib/models/Owner';
-import { verifyAccessToken } from '@/lib/utils/jwt';
+import connectDB from '../../../../lib/db/connection';
+import Student from '../../../../lib/models/Student';
+import Owner from '../../../../lib/models/Owner';
+import { verifyAccessToken } from '../../../../lib/utils/jwt';
 import { writeFile } from 'fs/promises';
 import path from 'path';
 import crypto from 'crypto';

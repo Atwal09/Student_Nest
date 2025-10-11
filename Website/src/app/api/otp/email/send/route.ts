@@ -1,15 +1,15 @@
 import { NextResponse } from 'next/server';
-import connectDB from '@/lib/db/connection';
-import OTP from '@/lib/models/OTP';
-import { sendOTPEmail } from '@/lib/utils/email';
-import { sendEmailOTPSchema } from '@/lib/validation/otpSchemas';
+import connectDB from '../../../../../lib/db/connection';
+import OTP from '../../../../../lib/models/OTP';
+import { sendOTPEmail } from '../../../../../lib/utils/email';
+import { sendEmailOTPSchema } from '../../../../../lib/validation/otpSchemas';
 import {
   sendRateLimiter,
   handleValidationError,
   handleRateLimit,
   handleError,
   createSendSuccessResponse
-} from '@/lib/utils/otpHelpers';
+} from '../../../../../lib/utils/otpHelpers';
 
 /**
  * POST /api/otp/email/send - Send OTP to email

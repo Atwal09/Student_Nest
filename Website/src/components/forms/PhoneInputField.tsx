@@ -1,8 +1,8 @@
 "use client"
 
 import { forwardRef, useState, useEffect, ChangeEvent, KeyboardEvent, ClipboardEvent } from 'react'
-import { Label } from '@/components/ui/label'
-import { cn } from '@/lib/utils'
+import { Label } from '../ui/label'
+import { cn } from '../../lib/utils'
 
 export interface PhoneInputFieldProps {
   id: string

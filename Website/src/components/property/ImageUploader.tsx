@@ -1,16 +1,16 @@
 "use client";
 
 import { useState, useRef, useCallback } from 'react';
-import { Card } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Progress } from '@/components/ui/progress';
-import { Badge } from '@/components/ui/badge';
+import { Card } from '../ui/card';
+import { Button } from '../ui/button';
+import { Progress } from '../ui/progress';
+import { Badge } from '../ui/badge';
 import {
   Upload, X, Image as ImageIcon, Loader2, CheckCircle,
   AlertCircle, Eye, Maximize2
 } from 'lucide-react';
 import { toast } from 'sonner';
-import apiClient from '@/lib/api';
+import apiClient from '../../lib/api';
 
 interface UploadedImage {
   id: string;
@@ -214,8 +214,8 @@ export function ImageUploader({
       {/* Upload Area */}
       <div
         className={`border-2 border-dashed rounded-lg transition-all ${dragActive
-            ? 'border-blue-500 bg-blue-50'
-            : 'border-gray-300 bg-gray-50'
+          ? 'border-blue-500 bg-blue-50'
+          : 'border-gray-300 bg-gray-50'
           } ${uploading ? 'opacity-50 pointer-events-none' : ''}`}
         onDragEnter={handleDrag}
         onDragLeave={handleDrag}

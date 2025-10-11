@@ -2,8 +2,8 @@
 
 import * as React from 'react';
 import { useState } from 'react';
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
+import { Input } from '../ui/input';
+import { Button } from '../ui/button';
 import { Eye, EyeOff } from 'lucide-react';
 
 interface PasswordInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -79,9 +79,9 @@ export const PasswordInput = React.forwardRef<HTMLInputElement, PasswordInputPro
             <div className="flex items-center justify-between text-xs">
               <span className="text-gray-600">Password Strength:</span>
               <span className={`font-medium ${strength.score < 40 ? 'text-red-600' :
-                  strength.score < 60 ? 'text-orange-600' :
-                    strength.score < 80 ? 'text-yellow-600' :
-                      'text-green-600'
+                strength.score < 60 ? 'text-orange-600' :
+                  strength.score < 80 ? 'text-yellow-600' :
+                    'text-green-600'
                 }`}>
                 {strength.label}
               </span>

@@ -2,9 +2,9 @@
 
 import React, { useState, useCallback, useEffect } from 'react';
 import { GoogleMap, useJsApiLoader, Marker, InfoWindow } from '@react-google-maps/api';
-import { Card, CardContent } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
+import { Card, CardContent } from '../ui/card';
+import { Button } from '../ui/button';
+import { Badge } from '../ui/badge';
 import { Loader2, MapPin, Home, Navigation2, IndianRupee, Bed, Star } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';

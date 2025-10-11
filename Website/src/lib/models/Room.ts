@@ -1,5 +1,5 @@
 import mongoose, { Schema, Document, Model } from 'mongoose';
-import type { Room as RoomType } from '@/types';
+import type { Room as RoomType } from '../../types';
 
 export interface RoomDocument extends Omit<RoomType, '_id'>, Document {
   occupancyRate: number;
@@ -170,6 +170,17 @@ const roomSchema = new Schema<RoomDocument>(
           'wardrobe',
           'study_table',
           'chair',
+          'water24x7',
+          'lift',
+          'elevator',
+          'balcony',
+          'attached_bathroom',
+          'kitchen',
+          'dining',
+          'swimming_pool',
+          'terrace',
+          'garden',
+          'playground',
         ],
       },
     ],

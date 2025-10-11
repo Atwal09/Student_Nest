@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
-import { useAuth } from "@/hooks/useAuth"
-import RoomBrowser from "@/components/room/RoomBrowser"
+import { useAuth } from "../../../hooks/useAuth"
+import RoomBrowser from "../../../components/room/RoomBrowser"
 
 export default function DashboardPage() {
   const router = useRouter()

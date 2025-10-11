@@ -1,15 +1,15 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
+import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
+import { Button } from '../ui/button';
+import { Badge } from '../ui/badge';
 import { Loader2, Heart, MapPin, Star, Users, Eye, Filter, Navigation, Map, List } from 'lucide-react';
-import apiClient from '@/lib/api';
+import apiClient from '../../lib/api';
 import Link from 'next/link';
 import Image from 'next/image';
-import FilterComponent from '@/components/filters/FilterComponent';
-import { Label } from '@/components/ui/label';
+import FilterComponent from '../filters/FilterComponent';
+import { Label } from '../ui/label';
 import {
   Dialog,
   DialogContent,
@@ -17,10 +17,10 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from '@/components/ui/dialog';
-import { LocationSelector, RoomsMapView } from '@/components/map';
+} from '../ui/dialog';
+import { LocationSelector, RoomsMapView } from '../map';
 import { toast } from 'sonner';
-import { filterRoomsByDistance } from '@/utils/distance';
+import { filterRoomsByDistance } from '../../utils/distance';
 
 interface Room {
   id: string;

@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
-import connectDB from '@/lib/db/connection';
-import Negotiation from '@/lib/models/Negotiation';
-import { verifyAccessToken } from '@/lib/utils/jwt';
+import connectDB from '../../../../lib/db/connection';
+import Negotiation from '../../../../lib/models/Negotiation';
+import { verifyAccessToken } from '../../../../lib/utils/jwt';
 
 // GET: Get specific negotiation details
 export async function GET(

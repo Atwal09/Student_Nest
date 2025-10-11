@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
-import connectDB from '@/lib/db/connection';
-import Room from '@/lib/models/Room';
-import User from '@/lib/models/User';
-import { verifyAccessToken } from '@/lib/utils/jwt';
+import connectDB from '../../../lib/db/connection';
+import Room from '../../../lib/models/Room';
+import User from '../../../lib/models/User';
+import { verifyAccessToken } from '../../../lib/utils/jwt';
 import mongoose from 'mongoose';
 
 export async function GET(request: NextRequest) {

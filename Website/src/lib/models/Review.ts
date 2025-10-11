@@ -1,5 +1,5 @@
 import mongoose, { Schema, Document, Model } from 'mongoose';
-import type { Review as ReviewType } from '@/types';
+import type { Review as ReviewType } from '../../types';
 
 export interface ReviewDocument extends Omit<ReviewType, '_id'>, Document {}
 

@@ -1,15 +1,15 @@
 import { NextResponse } from 'next/server';
-import connectDB from '@/lib/db/connection';
-import OTP from '@/lib/models/OTP';
-import { sendOTPSMS } from '@/lib/utils/sms';
-import { sendPhoneOTPSchema } from '@/lib/validation/otpSchemas';
+import connectDB from '../../../../../lib/db/connection';
+import OTP from '../../../../../lib/models/OTP';
+import { sendOTPSMS } from '../../../../../lib/utils/sms';
+import { sendPhoneOTPSchema } from '../../../../../lib/validation/otpSchemas';
 import {
   sendRateLimiter,
   handleValidationError,
   handleRateLimit,
   handleError,
   createSendSuccessResponse
-} from '@/lib/utils/otpHelpers';
+} from '../../../../../lib/utils/otpHelpers';
 
 /**
  * POST /api/otp/phone/send - Send OTP to phone

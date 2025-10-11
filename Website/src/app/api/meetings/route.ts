@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
-import connectDB from '@/lib/db/connection';
-import Meeting from '@/lib/models/Meeting';
-import Room from '@/lib/models/Room';
-import User from '@/lib/models/User';
-import { verifyAccessToken } from '@/lib/utils/jwt';
+import connectDB from '../../../lib/db/connection';
+import Meeting from '../../../lib/models/Meeting';
+import Room from '../../../lib/models/Room';
+import User from '../../../lib/models/User';
+import { verifyAccessToken } from '../../../lib/utils/jwt';
 
 // Helper function to verify JWT token
 async function verifyToken(request: NextRequest) {

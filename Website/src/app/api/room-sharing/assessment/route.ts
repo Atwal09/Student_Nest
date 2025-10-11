@@ -5,9 +5,9 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import connectDB from '@/lib/db/connection';
-import Student from '@/lib/models/Student';
-import { verifyAccessToken } from '@/lib/utils/jwt';
+import connectDB from '../../../../lib/db/connection';
+import Student from '../../../../lib/models/Student';
+import { verifyAccessToken } from '../../../../lib/utils/jwt';
 
 // Compatibility assessment interface
 interface ICompatibilityAssessment {

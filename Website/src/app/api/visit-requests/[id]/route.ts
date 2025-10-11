@@ -5,10 +5,10 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import connectDB from '@/lib/db/connection';
-import VisitRequest from '@/lib/models/VisitRequest';
-import User from '@/lib/models/User';
-import { verifyAccessToken } from '@/lib/utils/jwt';
+import connectDB from '../../../../lib/db/connection';
+import VisitRequest from '../../../../lib/models/VisitRequest';
+import User from '../../../../lib/models/User';
+import { verifyAccessToken } from '../../../../lib/utils/jwt';
 
 // ==================== HELPER FUNCTIONS ====================
 

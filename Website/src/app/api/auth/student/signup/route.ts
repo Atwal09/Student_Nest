@@ -1,11 +1,11 @@
 import { NextResponse } from 'next/server';
-import connectDB from '@/lib/db/connection';
-import { studentSignupSchema } from '@/lib/validation/authSchemas';
-import Student from '@/lib/models/Student';
-import OTP from '@/lib/models/OTP';
-import { generateTokens } from '@/lib/utils/jwt';
-import { sendWelcomeEmail } from '@/lib/utils/email';
-import { sendWelcomeSMS } from '@/lib/utils/sms';
+import connectDB from '../../../../../lib/db/connection';
+import { studentSignupSchema } from '../../../../../lib/validation/authSchemas';
+import Student from '../../../../../lib/models/Student';
+import OTP from '../../../../../lib/models/OTP';
+import { generateTokens } from '../../../../../lib/utils/jwt';
+import { sendWelcomeEmail } from '../../../../../lib/utils/email';
+import { sendWelcomeSMS } from '../../../../../lib/utils/sms';
 import { RateLimiterMemory } from 'rate-limiter-flexible';
 
 // Rate limiter: 3 signups per hour per IP

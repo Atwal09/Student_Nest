@@ -2,13 +2,13 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Textarea } from '@/components/ui/textarea';
+import { Card, CardContent, CardHeader, CardTitle } from '../../../../components/ui/card';
+import { Button } from '../../../../components/ui/button';
+import { Badge } from '../../../../components/ui/badge';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '../../../../components/ui/tabs';
+import { Input } from '../../../../components/ui/input';
+import { Label } from '../../../../components/ui/label';
+import { Textarea } from '../../../../components/ui/textarea';
 import {
   DollarSign,
   TrendingDown,
@@ -31,7 +31,7 @@ import {
   Home
 } from 'lucide-react';
 import { toast } from 'sonner';
-import apiClient from '@/lib/api';
+import apiClient from '../../../../lib/api';
 
 interface Negotiation {
   _id: string;

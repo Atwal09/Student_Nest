@@ -1,5 +1,5 @@
 import mongoose, { Schema, Document, Model } from 'mongoose';
-import type { Booking as BookingType } from '@/types';
+import type { Booking as BookingType } from '../../types';
 
 export interface BookingDocument extends Omit<BookingType, '_id'>, Document {}
 

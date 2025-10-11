@@ -1,6 +1,6 @@
 "use client";
 
-import Folder from '@/components/landing/components/Folder';
+import Folder from './components/Folder';
 import { Shield, Users, Search, Star, Clock, CheckCircle } from 'lucide-react';
 
 export default function FeaturesSection() {

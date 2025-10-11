@@ -1,15 +1,15 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import ProfileHeader from '@/components/profile/ProfileHeader';
-import ProfileNavigation from '@/components/profile/ProfileNavigation';
-import ProfileEditForm from '@/components/forms/ProfileEditForm';
-import VerificationWidget from '@/components/verification/VerificationWidget';
-import { getStudentProfile, updateStudentProfile, uploadAvatar } from '@/lib/api';
+import { Card, CardContent, CardHeader, CardTitle } from '../../../../components/ui/card';
+import { Button } from '../../../../components/ui/button';
+import { Badge } from '../../../../components/ui/badge';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '../../../../components/ui/dialog';
+import ProfileHeader from '../../../../components/profile/ProfileHeader';
+import ProfileNavigation from '../../../../components/profile/ProfileNavigation';
+import ProfileEditForm from '../../../../components/forms/ProfileEditForm';
+import VerificationWidget from '../../../../components/verification/VerificationWidget';
+import { getStudentProfile, updateStudentProfile, uploadAvatar } from '../../../../lib/api';
 import { Camera, Edit, RefreshCw, Shield, ShieldCheck, AlertTriangle, ArrowRight, Clock, Info, X } from 'lucide-react';
 
 // Verification Profile Section Component

@@ -1,10 +1,10 @@
 import { NextResponse } from 'next/server';
-import connectDB from '@/lib/db/connection';
-import User from '@/lib/models/User';
-import Student from '@/lib/models/Student';
-import Owner from '@/lib/models/Owner';
-import { loginSchema, normalizeEmail, sanitizePhone } from '@/lib/validation/authSchemas';
-import { generateTokens } from '@/lib/utils/jwt';
+import connectDB from '../../../../lib/db/connection';
+import User from '../../../../lib/models/User';
+import Student from '../../../../lib/models/Student';
+import Owner from '../../../../lib/models/Owner';
+import { loginSchema, normalizeEmail, sanitizePhone } from '../../../../lib/validation/authSchemas';
+import { generateTokens } from '../../../../lib/utils/jwt';
 import { RateLimiterMemory } from 'rate-limiter-flexible';
 
 // Rate limiter: 100 attempts per 15 minutes (increased for testing)

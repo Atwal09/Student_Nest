@@ -1,6 +1,6 @@
 "use client";
 
-import ScrollStack, { ScrollStackItem } from '@/components/landing/components/ScrollStack';
+import ScrollStack, { ScrollStackItem } from './components/ScrollStack';
 import { Star, Quote, MapPin, Clock } from 'lucide-react';
 import Link from 'next/link';
 

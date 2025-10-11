@@ -2,8 +2,8 @@
 
 import React, { useState, useCallback } from 'react';
 import { GoogleMap, useJsApiLoader, Marker, InfoWindow, Circle } from '@react-google-maps/api';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
+import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
+import { Badge } from '../ui/badge';
 import { Loader2, MapPin, Navigation } from 'lucide-react';
 
 const mapContainerStyle = {

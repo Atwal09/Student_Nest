@@ -1,11 +1,11 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { Card, CardContent } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
+import { Card, CardContent } from '../../../../components/ui/card';
+import { Button } from '../../../../components/ui/button';
+import { Badge } from '../../../../components/ui/badge';
+import { Input } from '../../../../components/ui/input';
+import { Label } from '../../../../components/ui/label';
 import {
   Calendar,
   Clock,
@@ -20,7 +20,7 @@ import {
   MapPin,
   CalendarClock
 } from 'lucide-react';
-import apiClient from '@/lib/api';
+import apiClient from '../../../../lib/api';
 import { toast } from 'sonner';
 
 interface Visit {

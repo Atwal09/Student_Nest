@@ -1,10 +1,10 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { Progress } from '@/components/ui/progress';
+import { Card, CardHeader, CardTitle, CardContent } from '../ui/card';
+import { Button } from '../ui/button';
+import { Badge } from '../ui/badge';
+import { Progress } from '../ui/progress';
 import {
   Shield,
   ShieldCheck,
@@ -216,9 +216,9 @@ export default function VerificationWidget({ userRole, compact = false }: Verifi
 
   return (
     <Card className={`border-2 ${statusColor.includes('red') ? 'border-red-200 bg-red-50' :
-        statusColor.includes('yellow') ? 'border-yellow-200 bg-yellow-50' :
-          statusColor.includes('blue') ? 'border-blue-200 bg-blue-50' :
-            'border-gray-200 bg-gray-50'
+      statusColor.includes('yellow') ? 'border-yellow-200 bg-yellow-50' :
+        statusColor.includes('blue') ? 'border-blue-200 bg-blue-50' :
+          'border-gray-200 bg-gray-50'
       }`}>
       <CardHeader className="pb-3">
         <div className="flex items-center justify-between">

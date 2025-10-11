@@ -2,12 +2,12 @@
 
 import { useState, useEffect } from 'react';
 import { useParams, useRouter, useSearchParams } from 'next/navigation';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Separator } from '@/components/ui/separator';
-import { Badge } from '@/components/ui/badge';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../../../../../../components/ui/card';
+import { Button } from '../../../../../../components/ui/button';
+import { Input } from '../../../../../../components/ui/input';
+import { Label } from '../../../../../../components/ui/label';
+import { Separator } from '../../../../../../components/ui/separator';
+import { Badge } from '../../../../../../components/ui/badge';
 import {
   CreditCard,
   Loader2,
@@ -20,7 +20,7 @@ import {
   ArrowLeft
 } from 'lucide-react';
 import { toast } from 'sonner';
-import apiClient from '@/lib/api';
+import apiClient from '../../../../../../lib/api';
 
 export default function PaymentPage() {
   const params = useParams();
@@ -170,8 +170,8 @@ export default function PaymentPage() {
                 <button
                   onClick={() => setPaymentData({ ...paymentData, selectedMethod: 'card' })}
                   className={`w-full p-4 rounded-lg border-2 transition-all ${paymentData.selectedMethod === 'card'
-                      ? 'border-blue-500 bg-blue-500/10'
-                      : 'border-zinc-700 hover:border-zinc-600'
+                    ? 'border-blue-500 bg-blue-500/10'
+                    : 'border-zinc-700 hover:border-zinc-600'
                     }`}
                 >
                   <div className="flex items-center gap-3">
@@ -186,8 +186,8 @@ export default function PaymentPage() {
                 <button
                   onClick={() => setPaymentData({ ...paymentData, selectedMethod: 'upi' })}
                   className={`w-full p-4 rounded-lg border-2 transition-all ${paymentData.selectedMethod === 'upi'
-                      ? 'border-blue-500 bg-blue-500/10'
-                      : 'border-zinc-700 hover:border-zinc-600'
+                    ? 'border-blue-500 bg-blue-500/10'
+                    : 'border-zinc-700 hover:border-zinc-600'
                     }`}
                 >
                   <div className="flex items-center gap-3">
@@ -202,8 +202,8 @@ export default function PaymentPage() {
                 <button
                   onClick={() => setPaymentData({ ...paymentData, selectedMethod: 'netbanking' })}
                   className={`w-full p-4 rounded-lg border-2 transition-all ${paymentData.selectedMethod === 'netbanking'
-                      ? 'border-blue-500 bg-blue-500/10'
-                      : 'border-zinc-700 hover:border-zinc-600'
+                    ? 'border-blue-500 bg-blue-500/10'
+                    : 'border-zinc-700 hover:border-zinc-600'
                     }`}
                 >
                   <div className="flex items-center gap-3">

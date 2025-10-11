@@ -1,5 +1,5 @@
 // Complete API utility for StudentNest Frontend-Backend Integration
-import type { ApiResponse, User } from '@/types';
+import type { ApiResponse, User } from '../types';
 
 const API_BASE_URL = process.env.NODE_ENV === 'production'
   ? 'https://your-domain.com'

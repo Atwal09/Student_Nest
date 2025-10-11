@@ -7,11 +7,11 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import mongoose from 'mongoose';
-import connectDB from '@/lib/db/connection';
-import VisitRequest from '@/lib/models/VisitRequest';
-import Room from '@/lib/models/Room';
-import User from '@/lib/models/User';
-import { verifyAccessToken } from '@/lib/utils/jwt';
+import connectDB from '../../../lib/db/connection';
+import VisitRequest from '../../../lib/models/VisitRequest';
+import Room from '../../../lib/models/Room';
+import User from '../../../lib/models/User';
+import { verifyAccessToken } from '../../../lib/utils/jwt';
 
 // ==================== HELPER FUNCTIONS ====================
 

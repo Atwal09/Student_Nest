@@ -2,8 +2,8 @@
 
 import React, { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
-import { Card, CardContent } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
+import { Card, CardContent } from '../ui/card';
+import { Badge } from '../ui/badge';
 import { Loader2, MapPin, Navigation2, } from 'lucide-react';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';

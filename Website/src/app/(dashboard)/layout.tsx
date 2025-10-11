@@ -1,9 +1,9 @@
 "use client";
 
-import { UserSidebar } from "@/components/user-sidebar";
+import { UserSidebar } from "../../components/user-sidebar";
 import { useEffect, useState, ReactNode } from "react";
 import { useRouter } from "next/navigation";
-import VerificationGuard from "@/components/verification/VerificationGuard";
+import VerificationGuard from "../../components/verification/VerificationGuard";
 
 interface User {
   id: string;

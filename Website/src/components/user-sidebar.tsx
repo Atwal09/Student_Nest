@@ -3,7 +3,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { NAV_ITEMS } from "@/components/nav-items";
+import { NAV_ITEMS } from "./nav-items";
 import {
   Sidebar as UISidebar,
   SidebarContent,
@@ -17,13 +17,13 @@ import {
   SidebarProvider,
   SidebarTrigger,
   SidebarInset,
-} from "@/components/ui/sidebar";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Separator } from "@/components/ui/separator";
-import { Button } from "@/components/ui/button";
+} from "./ui/sidebar";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import { Separator } from "./ui/separator";
+import { Button } from "./ui/button";
 import { LogOut, Home as HomeIcon } from "lucide-react";
-import { cn } from "@/lib/utils";
-import { StudentNestLogoIcon } from "@/components/ui/logo";
+import { cn } from "../lib/utils";
+import { StudentNestLogoIcon } from "./ui/logo";
 
 interface User {
   id?: string;

@@ -1,9 +1,9 @@
 "use client";
 
-import { Card } from "@/components/ui/card";
+import { Card } from "../ui/card";
 import { Info, Copy, Check } from "lucide-react";
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
+import { Button } from "../ui/button";
 
 interface DemoCredentialsProps {
   type: "student" | "owner";

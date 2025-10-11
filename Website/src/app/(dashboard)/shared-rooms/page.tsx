@@ -2,9 +2,9 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
+import { Card, CardContent } from "../../../components/ui/card";
+import { Button } from "../../../components/ui/button";
+import { Badge } from "../../../components/ui/badge";
 import {
   Users,
   MapPin,
@@ -17,7 +17,7 @@ import {
   RefreshCw,
   ExternalLink
 } from "lucide-react";
-import apiClient from '@/lib/api';
+import apiClient from '../../../lib/api';
 import { toast } from 'sonner';
 
 interface RoomSharingRequest {

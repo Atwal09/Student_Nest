@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
-import connectDB from '@/lib/db/connection';
-import Room from '@/lib/models/Room';
-import Review from '@/lib/models/Review';
+import connectDB from '../../../../lib/db/connection';
+import Room from '../../../../lib/models/Room';
+import Review from '../../../../lib/models/Review';
 import mongoose from 'mongoose';
 
 export async function GET(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {

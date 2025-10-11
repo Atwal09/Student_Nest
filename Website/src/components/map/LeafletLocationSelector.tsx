@@ -2,10 +2,10 @@
 
 import React, { useState, useCallback, useEffect } from 'react';
 import dynamic from 'next/dynamic';
-import { Card, CardContent } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Badge } from '@/components/ui/badge';
+import { Card, CardContent } from '../ui/card';
+import { Button } from '../ui/button';
+import { Input } from '../ui/input';
+import { Badge } from '../ui/badge';
 import { Loader2, MapPin, Navigation, Search } from 'lucide-react';
 import { toast } from 'sonner';
 import { useMapEvents } from 'react-leaflet';

@@ -1,11 +1,11 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "../../../../components/ui/card";
+import { Badge } from "../../../../components/ui/badge";
+import { Button } from "../../../../components/ui/button";
 import { Heart, MapPin, Star, Users, Wifi, Car, Utensils, Loader2, X, Eye, Calendar } from "lucide-react";
-import apiClient from "@/lib/api";
+import apiClient from "../../../../lib/api";
 import { useRouter } from "next/navigation";
 
 interface Location {
@@ -128,7 +128,7 @@ export default function SavedPage() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8 p-6">
       <div className="border-b pb-6">
         <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Saved Properties</h1>
         <p className="text-muted-foreground mt-2">
@@ -136,7 +136,7 @@ export default function SavedPage() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
         {savedProperties.map((property) => (
           <Card key={property.id} className="overflow-hidden hover:shadow-lg transition-shadow">
             <div className="relative">
@@ -146,7 +146,7 @@ export default function SavedPage() {
                 size="sm"
                 onClick={() => handleRemoveFromSaved(property.id)}
                 disabled={removingId === property.id}
-                className="absolute top-2 right-2 bg-white/80 hover:bg-white text-red-500"
+                className="absolute top-3 right-3 bg-white/80 hover:bg-white text-red-500 shadow-md"
               >
                 {removingId === property.id ? (
                   <Loader2 className="h-4 w-4 animate-spin" />
@@ -155,22 +155,24 @@ export default function SavedPage() {
                 )}
               </Button>
               {(property.verified || property.owner?.verified) && (
-                <Badge className="absolute top-2 left-2 bg-green-500">
+                <Badge className="absolute top-3 left-3 bg-green-500">
                   Verified
                 </Badge>
               )}
             </div>
-            <CardContent className="p-4">
-              <div className="space-y-3">
+            <CardContent className="p-5">
+              <div className="space-y-4">
                 <div>
-                  <h3 className="font-semibold text-lg">{property.title || property.name}</h3>
-                  <div className="flex items-center text-sm text-muted-foreground mt-1">
-                    <MapPin className="h-3 w-3 mr-1" />
-                    {property.location?.address ||
-                      property.location?.fullAddress ||
-                      (property.location?.city && property.location?.state ?
-                        `${property.location.city}, ${property.location.state}` :
-                        'Location not specified')}
+                  <h3 className="font-semibold text-lg line-clamp-1">{property.title || property.name}</h3>
+                  <div className="flex items-center text-sm text-muted-foreground mt-2">
+                    <MapPin className="h-3 w-3 mr-1 flex-shrink-0" />
+                    <span className="line-clamp-1">
+                      {property.location?.address ||
+                        property.location?.fullAddress ||
+                        (property.location?.city && property.location?.state ?
+                          `${property.location.city}, ${property.location.state}` :
+                          'Location not specified')}
+                    </span>
                   </div>
                 </div>
 
@@ -193,7 +195,7 @@ export default function SavedPage() {
                 )}
 
                 {property.amenities && property.amenities.length > 0 && (
-                  <div className="flex flex-wrap gap-1">
+                  <div className="flex flex-wrap gap-2">
                     {property.amenities.slice(0, 3).map((amenity) => (
                       <Badge key={amenity} variant="secondary" className="text-xs">
                         <span className="mr-1">{getAmenityIcon(amenity)}</span>
@@ -215,7 +217,7 @@ export default function SavedPage() {
                     onClick={() => handleViewDetails(property.id)}
                   >
                     <Eye className="w-4 h-4 mr-1" />
-                    View Details
+                    View
                   </Button>
                   <Button
                     size="sm"
@@ -224,14 +226,14 @@ export default function SavedPage() {
                     onClick={() => router.push(`/dashboard/rooms/${property.id}#schedule-visit`)}
                   >
                     <Calendar className="w-4 h-4 mr-1" />
-                    Schedule Visit
+                    Visit
                   </Button>
                   <Button
                     size="sm"
                     variant="destructive"
                     onClick={() => handleRemoveFromSaved(property.id)}
                     disabled={removingId === property.id}
-                    className="px-2"
+                    className="px-3"
                   >
                     {removingId === property.id ? (
                       <Loader2 className="w-4 h-4 animate-spin" />
@@ -247,11 +249,11 @@ export default function SavedPage() {
       </div>
 
       {savedProperties.length === 0 && (
-        <Card className="py-12">
+        <Card className="py-16">
           <CardContent className="text-center">
-            <Heart className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-            <h3 className="text-lg font-semibold mb-2">No saved properties yet</h3>
-            <p className="text-muted-foreground mb-4">
+            <Heart className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
+            <h3 className="text-xl font-semibold mb-2">No saved properties yet</h3>
+            <p className="text-muted-foreground mb-6">
               Start exploring and save properties you&apos;re interested in
             </p>
             <Button onClick={() => router.push('/dashboard')}>Browse Properties</Button>

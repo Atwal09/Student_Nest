@@ -4,14 +4,15 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { studentProfileSchema, ownerProfileSchema } from '@/lib/validation/profileSchemas';
+import { Button } from '../ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '../ui/form';
+import { Input } from '../ui/input';
+import { Textarea } from '../ui/textarea';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
+import { studentProfileSchema, ownerProfileSchema } from '../../lib/validation/profileSchemas';
 import { Save, Loader2, User, GraduationCap, Briefcase } from 'lucide-react';
+import { toast } from 'sonner';
 
 type ProfileData = z.infer<typeof studentProfileSchema> | z.infer<typeof ownerProfileSchema>;
 
@@ -53,8 +54,22 @@ const ProfileEditForm: React.FC<ProfileEditFormProps> = ({
   const onSubmit = async (data: ProfileData) => {
     try {
       await onUpdate(data);
-    } catch (error) {
+      toast.success('Profile updated successfully');
+    } catch (error: any) {
       console.error('Error updating profile:', error);
+
+      // Display validation errors from API response
+      if (error.response?.data?.details && Array.isArray(error.response.data.details)) {
+        error.response.data.details.forEach((detail: string) => {
+          toast.error(detail);
+        });
+      } else if (error.response?.data?.error) {
+        toast.error(error.response.data.error);
+      } else if (error.message) {
+        toast.error(error.message);
+      } else {
+        toast.error('Failed to update profile. Please try again.');
+      }
     }
   };
 

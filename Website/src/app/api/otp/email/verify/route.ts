@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
-import connectDB from '@/lib/db/connection';
-import OTP from '@/lib/models/OTP';
-import { verifyEmailOTPSchema } from '@/lib/validation/otpSchemas';
+import connectDB from '../../../../../lib/db/connection';
+import OTP from '../../../../../lib/models/OTP';
+import { verifyEmailOTPSchema } from '../../../../../lib/validation/otpSchemas';
 import {
   verifyRateLimiter,
   getClientIP,
@@ -10,7 +10,7 @@ import {
   handleError,
   createVerifySuccessResponse,
   createVerifyErrorResponse
-} from '@/lib/utils/otpHelpers';
+} from '../../../../../lib/utils/otpHelpers';
 
 /**
  * POST /api/otp/email/verify - Verify email OTP

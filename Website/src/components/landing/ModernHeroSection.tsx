@@ -1,7 +1,7 @@
 "use client";
 
-import CardSwap, { Card } from '@/components/landing/components/CardSwap';
-import { Button } from '@/components/ui/button';
+import CardSwap, { Card } from './components/CardSwap';
+import { Button } from '../ui/button';
 import { ArrowRight, Star, Users, Shield } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';

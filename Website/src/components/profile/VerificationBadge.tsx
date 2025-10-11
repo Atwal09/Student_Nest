@@ -1,7 +1,7 @@
 "use client";
 
 import React from 'react';
-import { Badge } from '@/components/ui/badge';
+import { Badge } from '../ui/badge';
 import { CheckCircle, Clock, XCircle, AlertCircle, Mail, Phone, GraduationCap, CreditCard, Shield } from 'lucide-react';
 
 const VerificationBadge = ({ status, type, size = "sm", showLabel = true }) => {
@@ -56,8 +56,8 @@ const VerificationBadge = ({ status, type, size = "sm", showLabel = true }) => {
     <Badge
       variant="outline"
       className={`inline-flex items-center gap-1.5 ${statusInfo.color} ${size === "lg" ? "px-3 py-1.5 text-sm" :
-          size === "md" ? "px-2.5 py-1 text-xs" :
-            "px-2 py-0.5 text-xs"
+        size === "md" ? "px-2.5 py-1 text-xs" :
+          "px-2 py-0.5 text-xs"
         }`}
     >
       <TypeIcon size={iconSize} className="flex-shrink-0" />

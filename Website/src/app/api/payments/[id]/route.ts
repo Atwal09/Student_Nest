@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
-import connectDB from '@/lib/db/connection';
+import connectDB from '../../../../lib/db/connection';
 import { Payment } from '../route';
-import { verifyAccessToken } from '@/lib/utils/jwt';
+import { verifyAccessToken } from '../../../../lib/utils/jwt';
 
 // Helper function to verify authentication
 async function getAuthenticatedUser(request: NextRequest) {
