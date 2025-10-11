@@ -2,6 +2,7 @@ import { create } from 'zustand';
 import { api } from '@services/api';
 import { secureStorage } from '@utils/secureStorage';
 import { config } from '@/src/config';
+import { DEMO_CREDENTIALS } from '@/src/constants/demo-credentials';
 
 interface User {
   id: string;
@@ -59,12 +60,44 @@ export const useAuthStore = create<AuthState>((set, get) => ({
       if (!email || !password) {
         throw new Error('Email and password are required');
       }
-      
-      // Prepare payload according to API validation schema
+
+      // For testing: Check demo credentials
+      if (email === DEMO_CREDENTIALS.student.email && password === DEMO_CREDENTIALS.student.password) {
+        console.log('Using demo student credentials');
+        
+        // Create mock user data
+        const mockUser: User = {
+          id: '1',
+          name: 'Demo Student',
+          email: email,
+          role: 'student',
+          profileImage: undefined
+        };
+        
+        const mockToken = 'mock-token-for-testing';
+
+        // Store mock data
+        await Promise.all([
+          secureStorage.setAuthToken(mockToken),
+          secureStorage.setUserData(mockUser),
+        ]);
+
+        // Update store state
+        set({ 
+          isAuthenticated: true, 
+          token: mockToken, 
+          user: mockUser, 
+          isLoading: false 
+        });
+
+        return;
+      }
+
+      // If not using demo credentials, try real API
       const payload = {
-        identifier: email, // API expects 'identifier' instead of 'email'
+        identifier: email,
         password,
-        role: 'student' // Explicitly specify role
+        role: 'student'
       };
 
       console.log('Login attempt with:', { identifier: email, role: 'student' });

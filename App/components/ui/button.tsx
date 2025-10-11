@@ -8,13 +8,23 @@ interface ButtonProps {
   onPress: () => void;
   loading?: boolean;
   disabled?: boolean;
+  variant?: 'default' | 'primary' | 'secondary' | 'destructive';
 }
 
-export function Button({ children, style, textStyle, onPress, loading, disabled }: ButtonProps) {
+export function Button({ 
+  children, 
+  style, 
+  textStyle, 
+  onPress, 
+  loading, 
+  disabled,
+  variant = 'default' 
+}: ButtonProps) {
   return (
     <TouchableOpacity 
       style={[
         styles.button, 
+        styles[variant],
         style,
         (loading || disabled) && styles.buttonDisabled
       ]} 
@@ -35,9 +45,20 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 12,
     borderRadius: 8,
-    backgroundColor: '#007AFF',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  default: {
+    backgroundColor: '#007AFF',
+  },
+  primary: {
+    backgroundColor: '#0A84FF',
+  },
+  secondary: {
+    backgroundColor: '#64748B',
+  },
+  destructive: {
+    backgroundColor: '#EF4444',
   },
   buttonDisabled: {
     opacity: 0.7,

@@ -22,34 +22,48 @@ export default function TabLayout() {
       {isStudent ? (
         <>
           <Tabs.Screen
-            name="explore"
+            name="home"
             options={{
-              title: 'Explore',
-              tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+              title: 'Home',
+              tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
             }}
           />
           <Tabs.Screen
-            name="index"
+            name="room-sharing"
             options={{
-              title: 'Profile',
-              tabBarIcon: ({ color }) => <IconSymbol size={28} name="person.fill" color={color} />,
+              title: 'Shared',
+              tabBarIcon: ({ color }) => <IconSymbol size={28} name="person.2.fill" color={color} />,
+            }}
+          />
+          <Tabs.Screen
+            name="messages"
+            options={{
+              title: 'Messages',
+              tabBarIcon: ({ color }) => <IconSymbol size={28} name="message.fill" color={color} />,
             }}
           />
         </>
       ) : (
         <>
           <Tabs.Screen
-            name="room-sharing"
+            name="properties"
             options={{
-              title: 'My Rooms',
-              tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
+              title: 'Properties',
+              tabBarIcon: ({ color }) => <IconSymbol size={28} name="building.fill" color={color} />,
             }}
           />
           <Tabs.Screen
-            name="index"
+            name="booking-requests"
             options={{
-              title: 'Profile',
-              tabBarIcon: ({ color }) => <IconSymbol size={28} name="person.fill" color={color} />,
+              title: 'Requests',
+              tabBarIcon: ({ color }) => <IconSymbol size={28} name="doc.text.fill" color={color} />,
+            }}
+          />
+          <Tabs.Screen
+            name="messages"
+            options={{
+              title: 'Messages',
+              tabBarIcon: ({ color }) => <IconSymbol size={28} name="message.fill" color={color} />,
             }}
           />
         </>

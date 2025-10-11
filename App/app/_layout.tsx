@@ -13,7 +13,6 @@ import { useNavigationStore, useAuthStore } from '@store';
 
 export const unstable_settings = {
   initialRouteName: '(landing)',
-  // Define all the route groups that will be loaded
   routes: {
     '(landing)': {
       screens: {
@@ -28,11 +27,16 @@ export const unstable_settings = {
         'owner/signup': 'Owner Registration',
       },
     },
-    '(tabs)': {
+    '(drawer)': {
       screens: {
-        'index': 'Home',
-        'explore': 'Explore',
+        'home': 'Home',
         'room-sharing': 'Room Sharing',
+        'bookings': 'My Bookings',
+        'visiting': 'Visiting Schedule',
+        'negotiations': 'Negotiations',
+        'saved': 'Saved Rooms',
+        'messages': 'Messages',
+        'profile': 'Profile',
       },
     },
   },
@@ -45,11 +49,18 @@ export default function RootLayout() {
     <GestureHandlerRootView style={styles.container}>
       <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
         <AuthProvider>
-          <Stack>
-            <Stack.Screen name="(landing)" options={{ headerShown: false }} />
-            <Stack.Screen name="(auth)" options={{ headerShown: false }} />
-            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-            <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />
+          <Stack screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="(landing)" />
+            <Stack.Screen name="(auth)" />
+            <Stack.Screen name="(drawer)" />
+            <Stack.Screen 
+              name="modal" 
+              options={{ 
+                headerShown: true,
+                presentation: 'modal', 
+                title: 'Modal' 
+              }} 
+            />
           </Stack>
           <StatusBar style="auto" />
         </AuthProvider>
