@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { Card, CardContent } from '../../../../components/ui/card';
 import { Button } from '../../../../components/ui/button';
 import { Badge } from '../../../../components/ui/badge';
+import BookingPaymentCard from '../../../../components/booking/BookingPaymentCard';
 import apiClient from '../../../../lib/api';
 import {
   Calendar,
@@ -22,15 +23,22 @@ interface Booking {
   id: string;
   roomTitle: string;
   roomAddress: string;
+  roomImage?: string;
   monthlyRent: number;
   moveInDate: string;
+  moveOutDate?: string;
   duration: number;
   status: string;
   paymentStatus: string;
+  paymentMethod?: string;
+  transactionId?: string;
   totalAmount: number;
   securityDeposit: number;
   createdAt: string;
   roomId: string;
+  propertyId?: string;
+  ownerName?: string;
+  ownerPhone?: string;
 }
 
 export default function StudentBookingsPage() {
@@ -55,15 +63,22 @@ export default function StudentBookingsPage() {
             id: booking._id || booking.id,
             roomTitle: booking.room?.title || booking.propertyTitle || 'Property',
             roomAddress: booking.room?.location?.address || booking.room?.address || 'Address not available',
+            roomImage: booking.room?.images?.[0] || '',
             monthlyRent: booking.financial?.monthlyRent || booking.monthlyRent || 0,
             moveInDate: booking.moveInDate || booking.startDate,
+            moveOutDate: booking.moveOutDate || booking.endDate,
             duration: booking.duration || 1,
             status: booking.status || 'pending',
             paymentStatus: booking.financial?.paymentStatus || booking.paymentStatus || 'pending',
+            paymentMethod: booking.paymentDetails?.paymentMethod || booking.paymentMethod,
+            transactionId: booking.paymentDetails?.transactionId || booking.transactionId,
             totalAmount: booking.financial?.totalAmount || booking.totalAmount || 0,
             securityDeposit: booking.financial?.securityDeposit || booking.securityDeposit || 0,
             createdAt: booking.timeline?.createdAt || booking.createdAt,
             roomId: booking.room?._id || booking.roomId || booking.propertyId,
+            propertyId: booking.room?._id || booking.propertyId,
+            ownerName: booking.owner?.fullName || booking.ownerName,
+            ownerPhone: booking.owner?.phone || booking.ownerPhone,
           }));
         setBookings(validBookings);
       } else {
@@ -193,7 +208,7 @@ export default function StudentBookingsPage() {
       </div>
 
       {/* Bookings List */}
-      <div className="space-y-4">
+      <div className="space-y-6">
         {bookings.length === 0 ? (
           <Card>
             <CardContent className="pt-6 text-center">
@@ -206,76 +221,12 @@ export default function StudentBookingsPage() {
           </Card>
         ) : (
           bookings.map((booking) => (
-            <Card key={booking.id}>
-              <CardContent className="pt-6">
-                {isBookingExpired(booking) && (
-                  <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg flex items-center gap-2">
-                    <AlertTriangle className="h-5 w-5 text-red-600" />
-                    <p className="text-sm text-red-600">
-                      This booking request has expired. Please create a new booking.
-                    </p>
-                  </div>
-                )}
-
-                <div className="flex justify-between items-start mb-4">
-                  <div>
-                    <h3 className="font-semibold text-lg">{booking.roomTitle}</h3>
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground mt-1">
-                      <MapPin className="h-4 w-4" />
-                      <span>{booking.roomAddress}</span>
-                    </div>
-                  </div>
-                  <div className="text-right">
-                    <Badge className={getStatusColor(booking.status)}>
-                      {booking.status}
-                    </Badge>
-                    <p className="text-xs text-muted-foreground mt-1">
-                      Payment: {booking.paymentStatus}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
-                  <div>
-                    <p className="text-sm text-muted-foreground">Move-in Date</p>
-                    <p className="font-medium">{formatDate(booking.moveInDate)}</p>
-                  </div>
-                  <div>
-                    <p className="text-sm text-muted-foreground">Duration</p>
-                    <p className="font-medium">{booking.duration} months</p>
-                  </div>
-                  <div>
-                    <p className="text-sm text-muted-foreground">Monthly Rent</p>
-                    <p className="font-medium text-green-600">₹{booking.monthlyRent.toLocaleString()}</p>
-                  </div>
-                  <div>
-                    <p className="text-sm text-muted-foreground">Total Amount</p>
-                    <p className="font-medium">₹{booking.totalAmount.toLocaleString()}</p>
-                  </div>
-                </div>
-
-                <div className="flex gap-2">
-                  <Button
-                    size="sm"
-                    variant="outline"
-                    onClick={() => handleViewRoom(booking.roomId)}
-                  >
-                    <Eye className="h-4 w-4 mr-1" />
-                    View Room
-                  </Button>
-                  {booking.status === 'pending' && !isBookingExpired(booking) && (
-                    <Button
-                      size="sm"
-                      variant="destructive"
-                      onClick={() => handleCancelBooking(booking.id)}
-                    >
-                      <X className="h-4 w-4 mr-1" />
-                      Cancel
-                    </Button>
-                  )}
-                </div>
-              </CardContent>
-            </Card>
+            <BookingPaymentCard
+              key={booking.id}
+              booking={booking}
+              onPaymentSuccess={fetchBookings}
+              onStatusChange={fetchBookings}
+            />
           ))
         )}
       </div>
