@@ -3,6 +3,7 @@ import connectDB from '../../../lib/db/connection';
 import Booking from '../../../lib/models/Booking';
 import Room from '../../../lib/models/Room';
 import User from '../../../lib/models/User';
+import Negotiation from '../../../lib/models/Negotiation';
 import { verifyAccessToken } from '../../../lib/utils/jwt';
 
 // Helper function to verify JWT token
@@ -93,6 +94,47 @@ export async function POST(request: NextRequest) {
       }
     }
 
+    // Check if this is a negotiated booking
+    let negotiatedPrice = null;
+    let negotiation = null;
+
+    if (body.negotiationId) {
+      negotiation = await Negotiation.findById(body.negotiationId);
+
+      if (!negotiation) {
+        return NextResponse.json({
+          success: false,
+          error: 'Negotiation not found'
+        }, { status: 404 });
+      }
+
+      // Verify this negotiation is for this student and room
+      if (negotiation.student.toString() !== decoded.userId) {
+        return NextResponse.json({
+          success: false,
+          error: 'This negotiation does not belong to you'
+        }, { status: 403 });
+      }
+
+      if (negotiation.room.toString() !== body.roomId) {
+        return NextResponse.json({
+          success: false,
+          error: 'Negotiation is for a different room'
+        }, { status: 400 });
+      }
+
+      // Verify negotiation is accepted
+      if (negotiation.status !== 'accepted') {
+        return NextResponse.json({
+          success: false,
+          error: `Cannot book with negotiation in ${negotiation.status} status. Negotiation must be accepted by both parties.`
+        }, { status: 400 });
+      }
+
+      // Use the negotiated final price
+      negotiatedPrice = negotiation.finalPrice;
+    }
+
     // Validate move-in date
     const moveInDate = new Date(body.moveInDate);
     const today = new Date();
@@ -110,7 +152,7 @@ export async function POST(request: NextRequest) {
     moveOutDate.setMonth(moveOutDate.getMonth() + body.duration);
 
     // Calculate financial details
-    const monthlyRent = room.price;
+    const monthlyRent = negotiatedPrice || room.price; // Use negotiated price if available
     const securityDeposit = body.securityDeposit || room.securityDeposit || monthlyRent;
     const maintenanceCharges = body.maintenanceCharges || room.maintenanceCharges || 0;
     const totalAmount = monthlyRent + securityDeposit + maintenanceCharges;
@@ -120,6 +162,7 @@ export async function POST(request: NextRequest) {
       room: body.roomId,
       student: decoded.userId,
       owner: (room.owner as any)._id,
+      negotiation: body.negotiationId || undefined, // Link to negotiation if provided
       moveInDate,
       moveOutDate,
       duration: body.duration,

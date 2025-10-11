@@ -70,7 +70,7 @@ export async function POST(request: NextRequest) {
     // Update booking with offline payment details
     booking.paymentMethod = paymentMethod || 'offline';
     booking.paymentStatus = 'pending_confirmation'; // Waiting for owner to confirm
-    
+
     // Initialize or update offline payment status
     booking.offlinePaymentStatus = {
       studentConfirmed: true,

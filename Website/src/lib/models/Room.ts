@@ -73,6 +73,7 @@ const roomSchema = new Schema<RoomDocument>(
         type: Number,
         min: 1,
         max: 50,
+        default: 1,
       },
       furnished: {
         type: Boolean,
@@ -161,6 +162,7 @@ const roomSchema = new Schema<RoomDocument>(
           'gym',
           'library',
           'cafeteria',
+          'mess',
           'cctv',
           'geyser',
           'cooler',

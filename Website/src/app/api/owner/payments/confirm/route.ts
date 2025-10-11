@@ -78,7 +78,7 @@ export async function POST(request: NextRequest) {
     // Update booking - Owner confirms payment received
     booking.paymentStatus = 'completed';
     booking.status = 'confirmed';
-    
+
     // Update offline payment status
     const offlinePaymentStatus = (booking as any).offlinePaymentStatus || {};
     (booking as any).offlinePaymentStatus = {
@@ -106,7 +106,7 @@ export async function POST(request: NextRequest) {
     if (room && room.availability) {
       await Room.updateOne(
         { _id: booking.room },
-        { 
+        {
           $set: {
             'availability.availableRooms': Math.max(0, (room.availability.availableRooms || 0) - 1),
             'availability.isAvailable': (room.availability.availableRooms || 0) - 1 > 0
@@ -133,7 +133,7 @@ export async function POST(request: NextRequest) {
       message: error.message,
       errors: error.errors
     });
-    
+
     return NextResponse.json({
       success: false,
       error: 'Failed to confirm payment. Please try again.',

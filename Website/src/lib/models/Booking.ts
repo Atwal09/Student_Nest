@@ -21,6 +21,12 @@ const bookingSchema = new Schema<BookingDocument>(
       required: true,
     },
 
+    // Reference to negotiation if this booking came from a negotiation
+    negotiation: {
+      type: Schema.Types.ObjectId,
+      ref: 'Negotiation',
+    },
+
     moveInDate: {
       type: Date,
       required: true,
@@ -124,10 +130,10 @@ const bookingSchema = new Schema<BookingDocument>(
       type: String,
       enum: ['online', 'offline', 'razorpay', 'cash', 'upi', 'bank_transfer'],
     },
-    
+
     // Order ID for tracking
     orderId: String,
-    
+
     // Transaction details
     transaction: {
       id: String,

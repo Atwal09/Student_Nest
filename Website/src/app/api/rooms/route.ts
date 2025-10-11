@@ -258,7 +258,7 @@ export async function GET(request: NextRequest) {
         features: {
           area: room.features?.area,
           floor: room.features?.floor,
-          totalFloors: room.features?.totalFloors,
+          totalFloors: room.features?.totalFloors && room.features.totalFloors >= 1 ? room.features.totalFloors : undefined,
           furnished: room.features?.furnished,
           balcony: room.features?.balcony,
           attached_bathroom: room.features?.attached_bathroom,
