@@ -6,6 +6,10 @@ import User from '../../../../lib/models/User';
 import { verifyAccessToken } from '../../../../lib/utils/jwt';
 import { createRazorpayOrder, amountToPaise } from '../../../../lib/utils/razorpay';
 
+// Configure route
+export const dynamic = 'force-dynamic';
+export const runtime = 'nodejs';
+
 // Helper function to verify JWT token
 async function verifyToken(request: NextRequest) {
   const authHeader = request.headers.get('authorization');
@@ -26,17 +30,25 @@ async function verifyToken(request: NextRequest) {
 // POST: Create a new payment order
 export async function POST(request: NextRequest) {
   try {
+    console.log('[Create Order] Request received');
+    
     // Verify authentication
     const decoded = await verifyToken(request);
     const userId = decoded.userId;
+    
+    console.log('[Create Order] User authenticated:', userId);
 
     await connectDB();
+    console.log('[Create Order] Database connected');
 
     const body = await request.json();
     const { amount, currency = 'INR', bookingId, propertyId, description, notes } = body;
+    
+    console.log('[Create Order] Request body:', { amount, currency, bookingId, propertyId });
 
     // Validate amount
     if (!amount || amount <= 0) {
+      console.error('[Create Order] Invalid amount:', amount);
       return NextResponse.json(
         { success: false, error: 'Invalid amount' },
         { status: 400 }
@@ -118,7 +130,9 @@ export async function POST(request: NextRequest) {
       },
     });
   } catch (error: any) {
-    console.error('Create order error:', error);
+    console.error('[Create Order] Error:', error);
+    console.error('[Create Order] Error message:', error.message);
+    console.error('[Create Order] Error stack:', error.stack);
 
     if (error.message === 'Invalid token' || error.message === 'No token provided') {
       return NextResponse.json(

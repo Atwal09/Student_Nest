@@ -82,6 +82,17 @@ export default function RazorpayCheckout({
         }),
       });
 
+      // Check if response is OK
+      if (!orderResponse.ok) {
+        const contentType = orderResponse.headers.get('content-type');
+        if (contentType && contentType.includes('application/json')) {
+          const errorData = await orderResponse.json();
+          throw new Error(errorData.error || `Server error: ${orderResponse.status}`);
+        } else {
+          throw new Error(`Server error: ${orderResponse.status} - ${orderResponse.statusText}`);
+        }
+      }
+
       const orderResult = await orderResponse.json();
 
       if (!orderResult.success) {
